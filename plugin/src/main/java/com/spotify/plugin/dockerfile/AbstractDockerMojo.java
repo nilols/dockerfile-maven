@@ -426,7 +426,7 @@ public abstract class AbstractDockerMojo extends AbstractMojo {
   @Nonnull
   private RegistryAuthSupplier createRegistryAuthSupplier() {
     final List<RegistryAuthSupplier> suppliers = new ArrayList<>();
-
+/*
     if (useMavenSettingsForAuth) {
       suppliers.add(new MavenRegistryAuthSupplier(session.getSettings()));
     }
@@ -458,6 +458,8 @@ public abstract class AbstractDockerMojo extends AbstractMojo {
     if (pomSupplier.hasUserName()) {
       suppliers.add(pomSupplier);
     }
+*/
+    suppliers.add(new AwsAuthSupplier(session.getSettings()));
 
     return new MultiRegistryAuthSupplier(suppliers);
   }
